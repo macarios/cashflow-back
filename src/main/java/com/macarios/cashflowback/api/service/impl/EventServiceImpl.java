@@ -39,8 +39,8 @@ public class EventServiceImpl implements EventService {
                 });
     }
 
-    public String deleteEvent(Integer id) {
+    public void deleteEvent(Integer id) {
         eventRepository.deleteById(id);
-        return "Evento removido com sucesso!";
+        // return "Evento removido com sucesso!";
     }
 }
