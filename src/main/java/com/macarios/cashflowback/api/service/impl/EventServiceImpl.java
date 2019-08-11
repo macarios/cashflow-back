@@ -3,9 +3,10 @@ package com.macarios.cashflowback.api.service.impl;
 import com.macarios.cashflowback.api.entity.Event;
 import com.macarios.cashflowback.api.repository.EventRepository;
 import com.macarios.cashflowback.api.service.EventService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,8 +15,8 @@ public class EventServiceImpl implements EventService {
     private EventRepository eventRepository;
     public EventServiceImpl(EventRepository eventRepository) {this.eventRepository = eventRepository;}
 
-    public List<Event> getEvents() {
-        return eventRepository.findAll();
+    public Page<Event> getEvents(Pageable pageable) {
+        return eventRepository.findAll(pageable);
     }
 
     public Optional<Event> getEvent(Integer id) {
