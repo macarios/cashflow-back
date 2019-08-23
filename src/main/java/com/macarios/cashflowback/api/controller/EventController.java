@@ -2,11 +2,10 @@ package com.macarios.cashflowback.api.controller;
 
 import com.macarios.cashflowback.api.entity.Event;
 import com.macarios.cashflowback.api.service.EventService;
-import com.macarios.cashflowback.api.service.impl.EventServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,9 +17,9 @@ public class EventController {
     public EventController(EventService eventService) {this.eventService = eventService;}
 
     @GetMapping(value = "")
-    public List<Event> getEvents() {
+    public Page<Event> getEvents(Pageable pageable) {
         System.out.println("GET");
-        return eventService.getEvents();
+        return eventService.getEvents(pageable);
     }
 
     @GetMapping(value = "{id}")
